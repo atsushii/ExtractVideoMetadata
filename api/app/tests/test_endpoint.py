@@ -6,6 +6,9 @@ import json
 
 
 class TestEndPoint(unittest.TestCase):
+    """
+    Test endpoint.
+    """
 
     def setUp(self):
         print("setup")
@@ -45,7 +48,11 @@ class TestEndPoint(unittest.TestCase):
         db.drop_all()
 
     def test_fetch_video_information(self):
+        """
+        Test fetching metadata correctly
+        """
 
+        # Test if uploaded file is video
         response = self.client.post(self.target_route,
                                     data={"data": self.test_video},
                                     content_type="multipart/form-data")
@@ -59,12 +66,14 @@ class TestEndPoint(unittest.TestCase):
         self.assertIn("mime_type", data)
         self.assertIn("width", data)
 
+        # Test if uploaded file is CSV
         response = self.client.post(self.target_route,
                                     data={"data": self.test_csv},
                                     content_type="multipart/form-data")
 
         assert response.status_code == 400
 
+        # Test if uploaded file is image
         response = self.client.post(self.target_route,
                                     data={"data": self.test_img},
                                     content_type="multipart/form-data")

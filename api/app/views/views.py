@@ -17,7 +17,10 @@ def fetch_video_information():
         video_data = request.files["data"]
         handle_video_file = HandleVideoFile("/api/uploads")
         cap, flag = handle_video_file.convert_to_videp_capture(video_data)
+
+        # Check uploaded file is video
         if cap.isOpened() and flag:
+
             extract_meta_data = ExtractMetaData(video_data, cap)
             meta_data = extract_meta_data.create_meta_data()
             yolo_video = YoloVideo(cap)

@@ -8,6 +8,9 @@ from datetime import datetime
 
 
 class TestExtractMetaData(unittest.TestCase):
+    """
+    Test extration metadata.
+    """
 
     def setUp(self):
         print("setup")
@@ -52,6 +55,10 @@ class TestExtractMetaData(unittest.TestCase):
         db.drop_all()
 
     def test_extract_filename(self):
+        """
+        Test extract filename
+        """
+
         response = self.extract_meta.extract_filename()
 
         self.assertEqual("Pexels Videos 2432402.mp4", response)
@@ -61,12 +68,20 @@ class TestExtractMetaData(unittest.TestCase):
         self.assertEqual("video123.mp4", response)
 
     def test_timestamp(self):
+        """
+        Test extract timestamp
+        """
+
         response = self.extract_meta.create_timestamp()
 
         self.assertEqual(datetime.now().strftime(
             "%Y-%m-%d %H:%M:%S"), response)
 
     def test_extract_minetype(self):
+        """
+        Test extract minetype
+        """
+
         response = self.extract_meta.extract_mimetype()
         self.assertEqual("multipart/form-data", response)
 
@@ -74,6 +89,9 @@ class TestExtractMetaData(unittest.TestCase):
         self.assertEqual("multipart/form-data", response)
 
     def test_extract_duration(self):
+        """
+        Test extract duration of vidoo
+        """
         response = self.extract_meta.extract_duration()
         self.assertIsInstance(response, str)
 
@@ -81,6 +99,9 @@ class TestExtractMetaData(unittest.TestCase):
         self.assertIsInstance(response, str)
 
     def test_extract_width_and_height(self):
+        """
+        Test extract width and height of video
+        """
         width, height = self.extract_meta.extract_width_and_height()
         self.assertIsInstance(width, float)
         self.assertIsInstance(height, float)
@@ -90,6 +111,9 @@ class TestExtractMetaData(unittest.TestCase):
         self.assertIsInstance(height, float)
 
     def test_create_meta_data(self):
+        """
+        Test create metadata
+        """
         response = self.extract_meta.create_meta_data()
         self.assertIsInstance(response, list)
         self.assertEqual(len(response[0]), 6)

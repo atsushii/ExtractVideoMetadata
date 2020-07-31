@@ -6,6 +6,9 @@ from app.utils.handle_video_file import HandleVideoFile
 
 
 class TestHandleVideoFile(unittest.TestCase):
+    """
+    Test convert to caption part.
+    """
 
     def setUp(self):
         print("setup")
@@ -45,17 +48,23 @@ class TestHandleVideoFile(unittest.TestCase):
         db.drop_all()
 
     def test_convertor(self):
+        """
+        Test converting to caption object correctly
+        """
 
+        # test if uploaded file is video
         response, flag = self.handle_video_file.convert_to_videp_capture(
             self.test_video)
 
         self.assertTrue(flag)
 
+        # test if uploaded file is CSV
         response, flag = self.handle_video_file.convert_to_videp_capture(
             self.test_csv)
 
         self.assertFalse(flag)
 
+        # test if uploaded file is image
         response, flag = self.handle_video_file.convert_to_videp_capture(
             self.test_img)
 

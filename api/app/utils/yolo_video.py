@@ -6,20 +6,28 @@ import os
 
 
 class YoloVideo():
+    """
+    Call pre-trained model to detect person.
+    """
 
     def __init__(self, cap):
+        """
+        Constructor
+        param: cap: VideoCapture
+        """
         self.cap = cap
-        self.writer = None
         self.height = None
         self.width = None
         self.label = "person"
-        self.color = (102, 220, 225)
         self.cfg = os.path.join(os.path.dirname(
-            __file__), '../yolo/yolov3-tiny.cfg')
+            __file__), '../yolo/yolov3-tiny.cfg')  # pre-trained model config
         self.weight = os.path.join(os.path.dirname(
-            __file__), '../yolo/yolov3-tiny.weights')
+            __file__), '../yolo/yolov3-tiny.weights')  # pre-trained model weight
 
     def count_person(self):
+        """
+        Count person in the frame of uploaded video by pre-trained model and OpenCV
+        """
 
         yolo = cv2.dnn.readNetFromDarknet(self.cfg, self.weight)
         layer = yolo.getLayerNames()
@@ -69,10 +77,13 @@ class YoloVideo():
                         confidences.append(float(confidence))
                         classIDs.append(classID)
             idxs = cv2.dnn.NMSBoxes(boxes, confidences, 0.5, 0.5)
+            # initialize count
             count_person = 0
+
             if len(idxs) > 0:
                 for i in idxs.flatten():
 
+                    # Label is a person, add a count
                     if classIDs[i] == 0:
                         count_person += 1
             counter_dict[self.cap.get(cv2.CAP_PROP_POS_MSEC)] = count_person
