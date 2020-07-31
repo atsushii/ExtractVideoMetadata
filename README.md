@@ -90,6 +90,8 @@ TOTAL                                   311     10    97%
 / CNN
 / MySQL
 
+# Note
+When you use this API. Key must be "data"
 
 
 
