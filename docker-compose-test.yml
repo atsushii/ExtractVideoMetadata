@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  web:
+    build:
+      context: ./api/
+      dockerfile: Dockerfile.test
+    ports:
+      - "5000:5000"
+    tty: true
+    volumes:
+      - ./api:/api/
+    environment:
+      - FLASK_ENV=test
+  mysql:
+    build: ./mysql/
+    volumes:
+      - ./mysql/mysql_data_test:/var/lib/mysql
+      - ./mysql/sqls_test:/docker-entrypoint-initdb.d
+
+    env_file:
+      - ./api.env
+    ports:
+      - "4306:3306"
