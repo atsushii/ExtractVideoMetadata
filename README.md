@@ -19,7 +19,7 @@ This is API which is implemented by Flask. We send video as a post request to th
 
 6. Upgrade: ``` flask db upgrade```
 
-7. Finally Use postman to send post request to api with video data
+7. Finally Use postman to send a post request to API
 
   **Success Response**
   ```
