@@ -20,4 +20,3 @@ Flask-Script==2.0.6
 python-magic==0.4.15
 numpy==1.19.1
 imutils==0.5.3
-pathlib2==2.3.5
