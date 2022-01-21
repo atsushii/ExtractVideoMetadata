@@ -7,7 +7,7 @@ Flask-JWT-Extended==3.23.0
 Flask-SQLAlchemy==2.4.1
 flask-swagger==0.2.13
 Flask-WTF>=0.14.3
-ipython==7.12.0
+ipython==7.16.3
 ipython-genutils==0.2.0
 json-merge-patch==0.2
 json5==0.9.1
