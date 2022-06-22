@@ -18,5 +18,5 @@ opencv-python==4.3.0.36
 Werkzeug==1.0.1
 Flask-Script==2.0.6
 python-magic==0.4.15
-numpy==1.19.1
+numpy==1.22.0
 imutils==0.5.3
